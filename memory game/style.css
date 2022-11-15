@@ -1,0 +1,38 @@
+h1 ,h3,h2{
+    margin: 0;
+}
+h2{
+    display: inline-block;
+}
+.container{
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+    margin: auto;
+}
+.box{
+    width: 146px;
+    height: 145px;
+    background: linear-gradient(#56ab2f,#a8e063 );
+    border:solid black 2px;
+    font-size: 120px;
+    text-align: center;
+}
+#score{
+    text-align: center;
+    font-size: large;
+}
+.time{
+    margin: auto;
+    width: 200px;
+    height: 150px;
+    border: 1px black solid;
+    text-align: center;
+    font-size: 15px;
+    background-color:#a8e063;
+}
+body{
+    background-color: lightgray;
+}
