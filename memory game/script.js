@@ -3,10 +3,12 @@ let winsnum=0;
 let losesnum=0;
 let score=0;
 let timecounter=35;
-const sec=timecounter;
-arr=[1,"1.png","2.jpg","3.png","4.png","5.png","6.jpg","7.png","8.png","1.png","2.jpg","3.png","4.png","5.png","6.jpg","7.png","8.png"];
 eventsImages=[];
 classesNames=[];
+arr=[null,  "1.png","2.jpg","3.png","4.png",
+            "5.png","6.jpg","7.png","8.png",
+            "1.png","2.jpg","3.png","4.png",
+            "5.png","6.jpg","7.png","8.png"];
 function changeRandomely(){
     var pos1=0; var pos2=0;
     for(var x=0;x<11;x++){
@@ -44,7 +46,7 @@ function roundsCounter(rounds){
     document.getElementsByClassName('rounds')[0].textContent=rounds;
 }
 function time(){
-    if(rounds==20){
+    if(rounds==10){
         return;
     }
     show();
@@ -63,7 +65,7 @@ function time(){
             document.getElementsByClassName("winsnum")[0].textContent=winsnum;
             timer.textContent="your are winner!!";
             document.querySelector("span").textContent="0";
-            timecounter=sec;
+            timecounter+=35;
             time();
         }
         else if(timecounter==0){
@@ -73,7 +75,7 @@ function time(){
             document.getElementsByClassName("losesnum")[0].textContent=losesnum;
             timer.textContent="Game Over !!";
             document.querySelector("span").textContent="0";
-            timecounter=sec;
+            timecounter+=35;
             time();
         }
         },1000)
