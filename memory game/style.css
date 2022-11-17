@@ -17,7 +17,7 @@ h2{
     width: 200px;
 
     border:solid black 2px;
-
+    background-color: #a8e063;
 }
 #score{
     text-align: center;
