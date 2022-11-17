@@ -5,20 +5,21 @@ h2{
     display: inline-block;
 }
 .container{
-    width: 600px;
-    height: 600px;
+    /* width: 600px;
+    height: 600px; */
+    width: 816px;
+    height: 810px;
     display: flex;
     flex-wrap: wrap;
-    background-color: black;
+    background-color:white;
     margin: auto;
 }
 .box{
-    width: 146px;
-    height: 145px;
-    background: linear-gradient(#56ab2f,#a8e063 );
+    height: 200px;
+    width: 200px;
+
     border:solid black 2px;
-    font-size: 120px;
-    text-align: center;
+
 }
 #score{
     text-align: center;

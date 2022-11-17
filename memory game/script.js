@@ -1,16 +1,15 @@
 var rounds=0;
 let winsnum=0;
 let losesnum=0;
-var score=0;
-var i=35;
-const sec=i;
-arr=[1,1,7,2,2,8,3,1,4,3,5,6,5,6,8,4,7];
-events=[];
-cls=[];
-
+let score=0;
+let timecounter=35;
+const sec=timecounter;
+arr=[1,"1.png","2.jpg","3.png","4.png","5.png","6.jpg","7.png","8.png","1.png","2.jpg","3.png","4.png","5.png","6.jpg","7.png","8.png"];
+eventsImages=[];
+classesNames=[];
 function changeRandomely(){
     var pos1=0; var pos2=0;
-    for(var x=0;x<31;x++){
+    for(var x=0;x<11;x++){
         pos1=Math.floor(Math.random()*16)+1
         pos2=Math.floor(Math.random()*16)+1
         var temp=arr[pos1];
@@ -20,19 +19,19 @@ function changeRandomely(){
 }
 function clear(){
     for(let x=1;x<=16;x++){
-        document.getElementsByClassName(String(x))[0].textContent="";
+        document.getElementsByClassName(String(x))[0].style="background-image:none";
     }
 }
 function show(){
     for(let x=1;x<=16;x++){
-        document.getElementsByClassName(String(x))[0].textContent=String(arr[x]);
+        document.getElementsByClassName(String(x))[0].style.backgroundImage=`url(${arr[x]})`;
     }
-    var x=5;
+    let time=5;
     tgtimer=document.getElementsByClassName("timetg")[0];
     let t=setInterval(function(){
-        x--;
-        tgtimer.textContent=String(x);
-        if(x==0){
+        time--;
+        tgtimer.textContent=String(time);
+        if(time==0){
             tgtimer.textContent="let's go";
             clear();
             clearInterval(t);
@@ -40,8 +39,10 @@ function show(){
     },1000)
     return true;
 }
-
-
+function roundsCounter(rounds){
+    ++rounds;
+    document.getElementsByClassName('rounds')[0].textContent=rounds;
+}
 function time(){
     if(rounds==20){
         return;
@@ -49,64 +50,55 @@ function time(){
     show();
     score=0;
     let setIervaL=setInterval(function(){
-        i--    
+        timecounter--    
         var timer=document.getElementsByClassName("timer")[0];
-        if(i<=30){
-            timer.textContent=String(i);
+        if(timecounter<=30){
+            timer.textContent=String(timecounter);
         }
         if(score==8){
-            ++rounds;
-            document.getElementsByClassName('rounds')[0].textContent=rounds;
+            roundsCounter(rounds);
             changeRandomely();
             clearInterval(setIervaL);
             winsnum++;
             document.getElementsByClassName("winsnum")[0].textContent=winsnum;
             timer.textContent="your are winner!!";
             document.querySelector("span").textContent="0";
-            i=sec;
-            time(sec);
+            timecounter=sec;
+            time();
         }
-        else if(i==0){
-            ++rounds;
-            document.getElementsByClassName('rounds')[0].textContent=rounds;
+        else if(timecounter==0){
+            roundsCounter(rounds);
             clearInterval(setIervaL)
             losesnum++;
             document.getElementsByClassName("losesnum")[0].textContent=losesnum;
             timer.textContent="Game Over !!";
             document.querySelector("span").textContent="0";
-            i=sec;
-            time(i);
+            timecounter=sec;
+            time();
         }
         },1000)
 }
-
-
 function eventMaker(className){
-        var div=document.getElementsByClassName(className)[0];
+        let div=document.getElementsByClassName(className)[0];
         div.addEventListener("click",function(){
-        div.textContent=String(arr[className]);
-        cls.push(String(className))
-        events.push(div.textContent);
-        if(events.length==2){
-                two=events.pop();
-                one=events.pop();
-                c1=cls.pop();
-                c2=cls.pop();
-                if(one===two&c1!==c2){
+        div.style.backgroundImage=`url(${arr[className]})`;
+        classesNames.push(className)
+        eventsImages.push(div.style.backgroundImage)
+        if(eventsImages.length==2){
+                let firstImgName=eventsImages.pop();
+                let secondImgName=eventsImages.pop();
+                let class1=classesNames.pop();
+                let class2=classesNames.pop();
+                if(firstImgName===secondImgName&class1!==class2){
                     document.querySelector("span").textContent=++score;
-                    //solving bug
-                    // document.getElementsByClassName(c1)[0].removeEventListener("mousedown",eventMaker(c1));
-                    // document.getElementsByClassName(c2)[0].removeEventListener("mousedown",eventMaker(c2));
-                    //
                 }
-                else if(one!==two){
-                    var t=document.getElementsByClassName(c1)[0].textContent="";
-                    var v=document.getElementsByClassName(c2)[0].textContent="";
+                else if(firstImgName!==secondImgName){
+                    document.getElementsByClassName(class1)[0].style.backgroundImage="";
+                    document.getElementsByClassName(class2)[0].style.backgroundImage="";
                 }
             }
     })
 }
-
 function addingevents(){
     for(let i=1;i<=16;i++){
         eventMaker(String(i))
