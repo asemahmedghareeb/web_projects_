@@ -21,7 +21,7 @@ function changeRandomely(){
         arr[pos2]=temp;
     }
 }
-function cleraDone(){
+function clearDone(){
     for(var i=0;i<done.length;i++){
         done.pop();
     }
@@ -49,18 +49,13 @@ function show(){
     return true;
 }
 function time(){
-    if(rounds==20){
+    if(rounds==10){
         return true ;
     }
-    
     show()
     score=0;
     let setIervaL=setInterval(function(){
         timecounter--;  
-        ///////////////////
-        // if(timecounter==30){
-        //     addingevents();
-        // }  
         var timer=document.getElementsByClassName("timer")[0];
         if(timecounter<=30){
             timer.textContent=String(timecounter);
@@ -76,7 +71,8 @@ function time(){
             timer.textContent="your are winner!!";
             document.querySelector("span").textContent="0";
             timecounter+=35;
-            cleraDone();
+            clearDone();
+
             time();
         }
         if(timecounter==0){
@@ -89,7 +85,7 @@ function time(){
             timer.textContent="Game Over !!";
             document.querySelector("span").textContent="0";
             timecounter+=35;
-            cleraDone();
+            clearDone();
             time();
         }
         },1000)
@@ -102,25 +98,24 @@ function isInDone(cls){
     return false;
 }
 function eventMaker(className){
-        done=[];
-        let div=document.getElementsByClassName(className)[0];
-        div.addEventListener("click",function(){
-        div.style.backgroundImage=`url(${arr[className]})`;
-        classesNames.push(className)
-        /////////////////////////////////////////
-        eventsImages.push(div.style.backgroundImage)
-        if(eventsImages.length==2){
-            let firstImgName=eventsImages.pop();
-            let secondImgName=eventsImages.pop();
-            let class1=classesNames.pop();
-            let class2=classesNames.pop();
-            if(firstImgName===secondImgName&class1!==class2&&(!isInDone(class1)&&!isInDone(class2))){
-                    done.push(class1);
-                    done.push(class2);
-                    document.querySelector("span").textContent=++score;
-                }
-                else if(firstImgName!==secondImgName){
-                    if(!isInDone(class1))
+        div=document.getElementsByClassName(className)[0];  
+        function events(){
+            let div=document.getElementsByClassName(className)[0];
+            div.style.backgroundImage=`url(${arr[className]})`;
+            classesNames.push(className)
+            eventsImages.push(div.style.backgroundImage)
+            if(eventsImages.length==2){
+                    let firstImgName=eventsImages.pop();
+                    let secondImgName=eventsImages.pop();
+                    let class1=classesNames.pop();
+                    let class2=classesNames.pop();
+                    if(firstImgName===secondImgName&class1!==class2&&(!isInDone(class1)&&!isInDone(class2))){
+                        done.push(class1);
+                        done.push(class2);
+                        document.querySelector("span").textContent=++score;
+                    }
+                    else if(firstImgName!==secondImgName){
+                        if(!isInDone(class1))
                         document.getElementsByClassName(class1)[0].style.backgroundImage="";
                         if(!isInDone(class2))
                         document.getElementsByClassName(class2)[0].style.backgroundImage="";
@@ -128,16 +123,19 @@ function eventMaker(className){
                     else if(firstImgName==secondImgName&&class1==class2&&(!isInDone(class1))){
                         document.getElementsByClassName(class1)[0].style.backgroundImage="";
                         document.getElementsByClassName(class2)[0].style.backgroundImage="";
-                    
-                }
+                        
+                    }
             }
-    })
+        }
+        div.addEventListener("click",events)
 }
 function addingevents(){
     for(let i=1;i<=16;i++){
         eventMaker(String(i))
     }
 }
-changeRandomely();
-addingevents();
+
+    changeRandomely();
+    addingevents();
     time();
+
