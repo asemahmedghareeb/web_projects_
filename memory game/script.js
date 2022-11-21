@@ -1,9 +1,9 @@
-done=[];
 var rounds=1;
 let winsnum=0;
 let losesnum=0;
 let score=0;
 let timecounter=35;
+done=[];
 eventsImages=[];
 classesNames=[];
 var x=true;
@@ -42,11 +42,11 @@ function show(){
         tgtimer.textContent=String(time);
         if(time==0){
             tgtimer.textContent="let's go";
+            addingevents();
             clear();
             clearInterval(t);
         }
     },1000)
-    return true;
 }
 function time(){
     if(rounds==10){
@@ -57,13 +57,13 @@ function time(){
     let setIervaL=setInterval(function(){
         timecounter--;  
         var timer=document.getElementsByClassName("timer")[0];
-        if(timecounter<=30){
+        if(timecounter<=30&&timecounter>=0){
             timer.textContent=String(timecounter);
         }
-        if(score==8){
+        else if(score==8){
             ++rounds;
+            clearDone();
             document.getElementsByClassName('rounds')[0].textContent=rounds;
-
             changeRandomely();
             clearInterval(setIervaL);
             winsnum++;
@@ -71,12 +71,12 @@ function time(){
             timer.textContent="your are winner!!";
             document.querySelector("span").textContent="0";
             timecounter+=35;
-            clearDone();
-
+            // show();
             time();
         }
-        if(timecounter==0){
+        else if(timecounter==0){
             ++rounds;
+            clearDone();
             document.getElementsByClassName('rounds')[0].textContent=rounds;
             
             clearInterval(setIervaL)
@@ -85,30 +85,29 @@ function time(){
             timer.textContent="Game Over !!";
             document.querySelector("span").textContent="0";
             timecounter+=35;
-            clearDone();
+            // show();
             time();
         }
-        },1000)
+    },1000)
 }
 function isInDone(cls){
     for(var i=0;i<done.length;i++){
         if(done[i]==cls)
-            return true;
+        return true;
     }
     return false;
 }
 function eventMaker(className){
-        div=document.getElementsByClassName(className)[0];  
-        function events(){
-            let div=document.getElementsByClassName(className)[0];
-            div.style.backgroundImage=`url(${arr[className]})`;
-            classesNames.push(className)
-            eventsImages.push(div.style.backgroundImage)
-            if(eventsImages.length==2){
-                    let firstImgName=eventsImages.pop();
-                    let secondImgName=eventsImages.pop();
-                    let class1=classesNames.pop();
-                    let class2=classesNames.pop();
+    var div=document.getElementsByClassName(className)[0];  
+    div.addEventListener("click",function(){
+        div.style.backgroundImage=`url(${arr[className]})`;
+        classesNames.push(className)
+        eventsImages.push(div.style.backgroundImage)
+        if(eventsImages.length==2){
+                    var firstImgName=eventsImages.pop();
+                    var secondImgName=eventsImages.pop();
+                    var class1=classesNames.pop();
+                    var class2=classesNames.pop();
                     if(firstImgName===secondImgName&class1!==class2&&(!isInDone(class1)&&!isInDone(class2))){
                         done.push(class1);
                         done.push(class2);
@@ -116,26 +115,29 @@ function eventMaker(className){
                     }
                     else if(firstImgName!==secondImgName){
                         if(!isInDone(class1))
-                        document.getElementsByClassName(class1)[0].style.backgroundImage="";
+                            document.getElementsByClassName(class1)[0].style.backgroundImage="";
                         if(!isInDone(class2))
-                        document.getElementsByClassName(class2)[0].style.backgroundImage="";
+                            document.getElementsByClassName(class2)[0].style.backgroundImage="";
                     }
                     else if(firstImgName==secondImgName&&class1==class2&&(!isInDone(class1))){
                         document.getElementsByClassName(class1)[0].style.backgroundImage="";
                         document.getElementsByClassName(class2)[0].style.backgroundImage="";
                         
                     }
+                    else{
+                        console.log("Eror");
+                    }
+                }
+                else{
+                    console.log("out of if")
+                }
+            })
+        }
+        function addingevents(){
+            for(let i=1;i<=16;i++){
+                eventMaker(String(i))
             }
         }
-        div.addEventListener("click",events)
-}
-function addingevents(){
-    for(let i=1;i<=16;i++){
-        eventMaker(String(i))
-    }
-}
-
-    changeRandomely();
-    addingevents();
-    time();
-
+        changeRandomely();
+        // addingevents();
+        time();

@@ -5,8 +5,8 @@ h2{
     display: inline-block;
 }
 .container{
-    width: 816px;
-    height: 810px;
+    width: 826px;
+    height: 820px;
     display: flex;
     flex-wrap: wrap;
     background-color:white;
@@ -15,7 +15,7 @@ h2{
 .box{
     height: 200px;
     width: 200px;
-
+    margin: auto;
     border:solid black 2px;
     background-color: #a8e063;
 }
