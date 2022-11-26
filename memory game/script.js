@@ -123,7 +123,6 @@ function eventMaker(className){
                         
                     }
                 }
-
             })
         }
         function addingevents(){
