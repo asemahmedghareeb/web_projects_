@@ -22,7 +22,8 @@ function changeRandomely(){
     }
 }
 function clearDone(){
-    for(var i=0;i<done.length;i++){
+    let size=done.length;
+    for(var i=0;i<size;i++){
         done.pop();
     }
 }
@@ -42,7 +43,6 @@ function show(){
         tgtimer.textContent=String(time);
         if(time==0){
             tgtimer.textContent="let's go";
-            addingevents();
             clear();
             clearInterval(t);
         }
@@ -60,7 +60,7 @@ function time(){
         if(timecounter<=30&&timecounter>=0){
             timer.textContent=String(timecounter);
         }
-        else if(score==8){
+        if(score==8){
             ++rounds;
             clearDone();
             document.getElementsByClassName('rounds')[0].textContent=rounds;
@@ -71,7 +71,6 @@ function time(){
             timer.textContent="your are winner!!";
             document.querySelector("span").textContent="0";
             timecounter+=35;
-            // show();
             time();
         }
         else if(timecounter==0){
@@ -85,7 +84,6 @@ function time(){
             timer.textContent="Game Over !!";
             document.querySelector("span").textContent="0";
             timecounter+=35;
-            // show();
             time();
         }
     },1000)
@@ -124,13 +122,8 @@ function eventMaker(className){
                         document.getElementsByClassName(class2)[0].style.backgroundImage="";
                         
                     }
-                    else{
-                        console.log("Eror");
-                    }
                 }
-                else{
-                    console.log("out of if")
-                }
+
             })
         }
         function addingevents(){
@@ -139,5 +132,5 @@ function eventMaker(className){
             }
         }
         changeRandomely();
-        // addingevents();
+        addingevents();
         time();
