@@ -28,29 +28,24 @@
                 
                 <small id="total"></small>
             </div>
-
             <input placeholder="count" type="number" id="count">
             <input placeholder="category" type="text" id="category">
-
             <button type="submit" id="submit">Create</button>
         </div>
-
-
-
         <div class="outputs">
             <div class="searchBlock">
-                <input type="text" id="search" placeholder="search">
+                <input type="text" id="search" placeholder="search" onkeyup="search(this.value)">
                 
-                <div class="btnSearch">
-                    <button id="SearchTitle">Search By Title</button>
+                <div class="btnSearch"  >
+                    <button id="SearchTitle" onclick="getSearchMood(this.id)">Search By Title</button>
                     
-                    <button id="SearchTitle">Search By category</button>
+                    <button id="SearchCategory" onclick="getSearchMood(this.id)">Search By category</button>
                 </div>
                 
             </div>
-
-        <table  >
-            <tr>
+        <div id="deleteAll"></div>
+        <table>
+            <tr >
                 <th>id</th>
                 <th>title</th>
                 <th>price</th>
@@ -62,90 +57,11 @@
                 <th>update</th>
                 <th>delete</th>
             </tr>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>samsung</td>
-                    <td>2000</td>
-                    <td>100</td>
-                    <td>100</td>
-                    <td>2100</td>
-                    <td>2100</td>
-                    <td>phone</td>
-                    <td><button id="update">update</button></td>
-                    <td><button id="delete">delete</button></td>
-
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>samsung</td>
-                    <td>2000</td>
-                    <td>100</td>
-                    <td>100</td>
-                    <td>2100</td>
-                    <td>2100</td>
-                    <td>phone</td>
-                    <td><button id="update">update</button></td>
-                    <td><button id="delete">delete</button></td>
-
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>samsung</td>
-                    <td>2000</td>
-                    <td>100</td>
-                    <td>100</td>
-                    <td>2100</td>
-                    <td>2100</td>
-                    <td>phone</td>
-                    <td><button id="update">update</button></td>
-                    <td><button id="delete">delete</button></td>
-
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>samsung</td>
-                    <td>2000</td>
-                    <td>100</td>
-                    <td>100</td>
-                    <td>2100</td>
-                    <td>2100</td>
-                    <td>phone</td>
-                    <td><button id="update">update</button></td>
-                    <td><button id="delete">delete</button></td>
-
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>samsung</td>
-                    <td>2000</td>
-                    <td>100</td>
-                    <td>100</td>
-                    <td>2100</td>
-                    <td>2100</td>
-                    <td>phone</td>
-                    <td><button id="update">update</button></td>
-                    <td><button id="delete">delete</button></td>
-
-                </tr>
-
-
-
+            <tbody id="tbody">
             </tbody>
         </table>
-
-            
         </div>
-
-
     </div>
-
-
-
-
-
-
-
     <script src="script.js"></script>
 </body>
 </html>
