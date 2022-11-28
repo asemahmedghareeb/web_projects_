@@ -31,7 +31,15 @@ function judge(){
 }
 var eventCounter=0; var o="O"; var x="X";
 let counterO=0,counterx=0;
-function asset(div,className){
+
+let done=[];
+function isInDone(item){
+    for(var i=0;i<done.length;i++){
+        if(done[i]==item)return true;
+    }
+    return false;
+}
+function asset(className){
     var div=document.getElementsByClassName(className)[0];
     var title=document.getElementById("title");
     var lwinner=document.getElementById("lwinner");
@@ -39,10 +47,10 @@ function asset(div,className){
         if(div.textContent==""){
             div.textContent=o;
             eventCounter++;
-        }
-        else{
-            div.textContent="";
-            eventCounter--;
+            var temp=o;
+            o=x;
+            x=temp;
+            title.innerHTML=o+" turn";
         }
         if(judge()){
             if(o=="O"){
@@ -61,13 +69,8 @@ function asset(div,className){
             lwinner.innerHTML="last game was Draw ";
             clear()
         }
-        var temp=o;
-        o=x;
-        x=temp;
-        title.innerHTML=o+" turn";
     })
 }
 for(var i=0;i<=8;i++){
-    var d;
-    asset(d,String(i));
+    asset(String(i));
 }
