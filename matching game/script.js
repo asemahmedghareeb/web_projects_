@@ -23,19 +23,16 @@ function changeRandomely(){
 }
 function clearDone(){
     let size=done.length;
-    for(var i=0;i<size;i++){
+    for(var i=0;i<size;i++)
         done.pop();
-    }
 }
 function clear(){
-    for(let x=1;x<=16;x++){
+    for(let x=1;x<=16;x++)
         document.getElementsByClassName(String(x))[0].style="background-image:none";
-    }
 }
 function show(){
-    for(let x=1;x<=16;x++){
+    for(let x=1;x<=16;x++)
         document.getElementsByClassName(String(x))[0].style.backgroundImage=`url(${arr[x]})`;
-    }
     let time=5;
     tgtimer=document.getElementsByClassName("timetg")[0];
     let t=setInterval(function(){
@@ -61,42 +58,38 @@ function time(){
             timer.textContent=String(timecounter);
         }
         if(score==8){
-            ++rounds;
-            clearDone();
+            ++rounds;++winsnum;
             document.getElementsByClassName('rounds')[0].textContent=rounds;
-            changeRandomely();
             clearInterval(setIervaL);
-            winsnum++;
             document.getElementsByClassName("winsnum")[0].textContent=winsnum;
             timer.textContent="your are winner!!";
             document.querySelector("span").textContent="0";
             timecounter+=35;
+            changeRandomely();
+            clearDone();
             time();
         }
         else if(timecounter==0){
-            ++rounds;
-            clearDone();
+            ++rounds;++losesnum;
             document.getElementsByClassName('rounds')[0].textContent=rounds;
-            
-            clearInterval(setIervaL)
-            losesnum++;
+            clearInterval(setIervaL);
             document.getElementsByClassName("losesnum")[0].textContent=losesnum;
             timer.textContent="Game Over !!";
             document.querySelector("span").textContent="0";
             timecounter+=35;
+            clearDone();
             time();
         }
     },1000)
 }
 function isInDone(cls){
     for(var i=0;i<done.length;i++){
-        if(done[i]==cls)
-        return true;
+        if(done[i]==cls) return true;
     }
     return false;
 }
 function eventMaker(className){
-    var div=document.getElementsByClassName(className)[0];  
+    var div=document.getElementsByClassName(className)[0];
     div.addEventListener("click",function(){
         div.style.backgroundImage=`url(${arr[className]})`;
         classesNames.push(className)
@@ -117,30 +110,28 @@ function eventMaker(className){
 
                             setTimeout(()=>{
                                 document.getElementsByClassName(class1)[0].style.backgroundImage="";
-                            },200)
+                            },300)
                         }
                         if(!isInDone(class2)){
                             setTimeout(() => {
                                 
                                 document.getElementsByClassName(class2)[0].style.backgroundImage="";
-                            },200 );
-
+                            },300 );
                         }
                     }//pressing in the same card twice
                     else if(firstImgName==secondImgName&&class1==class2&&(!isInDone(class1))){
                         setTimeout(function(){
                             document.getElementsByClassName(class1)[0].style.backgroundImage="";
-                        },200)
+                        },300)
                         
                     }
                 }
             })
         }
-        function addingevents(){
-            for(let i=1;i<=16;i++){
-                eventMaker(String(i))
-            }
-        }
-        changeRandomely();
-        addingevents();
-        time();
+function addingevents(){
+    for(let i=1;i<=16;i++)
+        eventMaker(String(i))
+}
+changeRandomely();
+addingevents();
+time();
