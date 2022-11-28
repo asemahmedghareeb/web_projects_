@@ -1,0 +1,17 @@
+var readline = require('readline');
+for(let i=0;i<3;i++){
+
+    var rl = readline.createInterface(process.stdin, process.stdout);
+}
+rl.setPrompt();
+
+
+
+
+let str="";
+rl.on('line',(value) => {
+    // console.log(`Hello, ${value}`);
+    str+=value;
+    rl.close();
+});
+

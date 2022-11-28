@@ -106,20 +106,31 @@ function eventMaker(className){
                     var secondImgName=eventsImages.pop();
                     var class1=classesNames.pop();
                     var class2=classesNames.pop();
+                    //pressing in two matched cards again
                     if(firstImgName===secondImgName&class1!==class2&&(!isInDone(class1)&&!isInDone(class2))){
                         done.push(class1);
                         done.push(class2);
                         document.querySelector("span").textContent=++score;
-                    }
+                    }//pressing in matched card and unmatched card or vice versa
                     else if(firstImgName!==secondImgName){
-                        if(!isInDone(class1))
-                            document.getElementsByClassName(class1)[0].style.backgroundImage="";
-                        if(!isInDone(class2))
-                            document.getElementsByClassName(class2)[0].style.backgroundImage="";
-                    }
+                        if(!isInDone(class1)){
+
+                            setTimeout(()=>{
+                                document.getElementsByClassName(class1)[0].style.backgroundImage="";
+                            },200)
+                        }
+                        if(!isInDone(class2)){
+                            setTimeout(() => {
+                                
+                                document.getElementsByClassName(class2)[0].style.backgroundImage="";
+                            },200 );
+
+                        }
+                    }//pressing in the same card twice
                     else if(firstImgName==secondImgName&&class1==class2&&(!isInDone(class1))){
-                        document.getElementsByClassName(class1)[0].style.backgroundImage="";
-                        document.getElementsByClassName(class2)[0].style.backgroundImage="";
+                        setTimeout(function(){
+                            document.getElementsByClassName(class1)[0].style.backgroundImage="";
+                        },200)
                         
                     }
                 }
