@@ -31,26 +31,16 @@ function judge(){
 }
 var eventCounter=0; var o="O"; var x="X";
 let counterO=0,counterx=0;
-
-let done=[];
-function isInDone(item){
-    for(var i=0;i<done.length;i++){
-        if(done[i]==item)return true;
-    }
-    return false;
-}
 function asset(className){
     var div=document.getElementsByClassName(className)[0];
     var title=document.getElementById("title");
     var lwinner=document.getElementById("lwinner");
     div.addEventListener("click",function(){
+        var bool=false;
         if(div.textContent==""){
+            bool=true;
             div.textContent=o;
             eventCounter++;
-            var temp=o;
-            o=x;
-            x=temp;
-            title.innerHTML=o+" turn";
         }
         if(judge()){
             if(o=="O"){
@@ -62,12 +52,22 @@ function asset(className){
                 document.getElementById("valueX").textContent=counterx;
             }
             lwinner.innerHTML="last winner is  "+o;
-            clear();
+            setTimeout(function(){
+                clear();
+            },1000)
         }
         else if(judge()==false&&eventCounter==9)
         {
             lwinner.innerHTML="last game was Draw ";
-            clear()
+            setTimeout(function(){
+                clear();
+            },1000)
+        }
+        if(bool==true){
+            var temp=o;
+            o=x;
+            x=temp;
+            title.innerHTML=o+" turn";
         }
     })
 }
