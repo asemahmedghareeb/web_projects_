@@ -1,0 +1,78 @@
+*{
+    margin: 0px;
+    text-decoration: none;
+}
+body,html{
+    height:auto
+}
+/* navigation bar */
+nav{
+    width: 100%;
+    position:fixed;
+    height: 50px;
+    display: flex;
+    background-color: rgb(16, 110, 193);
+}
+nav ul{
+    display:flex;
+    list-style: none;
+    color: white;
+    font-size: 1.5em; 
+} 
+li{
+    padding:20px;
+}  
+
+/* drop down */
+.list{
+    padding: 25px;
+    display: block;
+    padding:18px;
+}
+#pro{
+    font-size: 1.5em;
+    color: white;
+}
+#drop{
+    width: 90px;
+    padding: auto;
+    border-radius: 2px;
+    padding-left: 5px;
+}
+
+a{
+    color: white;
+}
+
+/* side bar */
+
+.side{
+    z-index: -1;
+    background-color:  #f1f1f1;
+    width: 200px;
+    height: 100%;
+    position:fixed;
+    top: 50px;
+    overflow:scroll;
+}
+
+
+.side a{
+    margin-left: 30px;
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    padding:10px;
+    display: block;
+    transition:.3s;
+}
+.side a:hover{
+    background-color:rgb(16, 110, 193) ;
+    letter-spacing: 2px;
+}
+/* makeing the site resposive */
+@media only screen and (max-width:600px){
+    .side a{
+        font-size:.7em
+    }
+}
